@@ -1,0 +1,27 @@
+Seed set to 42
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+
+  | Name      | Type               | Params | Mode  | FLOPs
+-----------------------------------------------------------------
+0 | network   | Sequential         | 3.2 M  | train | 0    
+1 | loss_func | CrossEntropyLoss   | 0      | train | 0    
+2 | val_acc   | MulticlassAccuracy | 0      | train | 0    
+3 | test_acc  | MulticlassAccuracy | 0      | train | 0    
+-----------------------------------------------------------------
+3.2 M     Trainable params
+0         Non-trainable params
+3.2 M     Total params
+12.849    Total estimated model params size (MB)
+13        Modules in train mode
+0         Modules in eval mode
+0         Total Flops
+/home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=3` in the `DataLoader` to improve performance.
+/home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=3` in the `DataLoader` to improve performance.
+`Trainer.fit` stopped: `max_epochs=100` reached.
+Restoring states from the checkpoint path at my_logs/part7_onecycle_100ep/version_0/checkpoints/epoch=85-step=34228.ckpt
+Loaded model weights from the checkpoint at my_logs/part7_onecycle_100ep/version_0/checkpoints/epoch=85-step=34228.ckpt
+/home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=3` in the `DataLoader` to improve performance.
+RESULT part7_onecycle_100ep: test_acc=0.9683 train_time=1672.0s
