@@ -20,3 +20,8 @@ TPU available: False, using: 0 TPU cores
 /home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 /home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=3` in the `DataLoader` to improve performance.
 /home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=3` in the `DataLoader` to improve performance.
+`Trainer.fit` stopped: `max_epochs=100` reached.
+Restoring states from the checkpoint path at my_logs/part7_onecycle_100ep_dropout0.1/version_0/checkpoints/epoch=96-step=38606.ckpt
+Loaded model weights from the checkpoint at my_logs/part7_onecycle_100ep_dropout0.1/version_0/checkpoints/epoch=96-step=38606.ckpt
+/home/ubuntu/.local/lib/python3.12/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=3` in the `DataLoader` to improve performance.
+RESULT part7_onecycle_100ep_dropout0.1: test_acc=0.9696 train_time=2388.1s

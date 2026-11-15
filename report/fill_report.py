@@ -16,7 +16,7 @@ import answers
 TEMPLATE = Path("report/template.docx")
 OUTPUT = Path("report/Lab_6_-_Deep_Learning_Lab_Report.docx")
 FIGURES = Path("figures")
-IMAGE_WIDTH = Inches(6.0)
+IMAGE_WIDTH = Inches(5.2)
 
 
 def load_results(path: Path = Path("results.jsonl")) -> dict[str, dict]:

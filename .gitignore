@@ -2,3 +2,4 @@ datasets/
 __MACOSX/
 *.ckpt
 __pycache__/
+runs/tb.log

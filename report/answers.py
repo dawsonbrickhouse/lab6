@@ -206,14 +206,42 @@ def part6_question(results: dict) -> list[str]:
     ]
 
 
-# ---------------------------------------------------------------- Part 7 (filled in after the runs)
+# ---------------------------------------------------------------- Part 7
 
-FINAL_RUN = ""
+FINAL_RUN = "part7_onecycle_100ep_dropout0.1"
 
 
 def part7_config(final: dict) -> list[str]:
-    raise NotImplementedError
+    return [
+        "[1024, 1024, 1024, 1024]",
+        str(final["batch_size"]),
+        str(final["epochs"]),
+        f"OneCycle, peak {final['lr']:g}",
+        "Scaled inputs, shuffling, AdamW (wd 1e-4), dropout 0.1",
+    ]
 
 
 def part7_notes(results: dict) -> list[str]:
-    raise NotImplementedError
+    r = results
+    final = r[FINAL_RUN]
+    return [
+        f"Final result: {_acc(r, FINAL_RUN)} test accuracy (best validation "
+        f"{100 * final['best_val_acc']:.2f}%), trained in {final['train_time_s'] / 60:.0f} min on a "
+        f"4-core CPU – up from {_acc(r, 'part1_baseline')} for the original baseline. Details: ReLU "
+        "MLP 54 → 1024 → 1024 → 1024 → 1024 → 7 (~3.2M parameters) with dropout 0.1 after each "
+        "hidden layer; StandardScaler on the 10 continuous features (fit on the training split "
+        "only); training data reshuffled every epoch; AdamW (weight decay 1e-4); OneCycleLR "
+        "warming up to 2e-3 and annealing to ~0, stepped every batch; best checkpoint by "
+        "validation accuracy; fixed-seed 70/10/20 split. Reproduce with `python lab6.py` "
+        "(the defaults are this configuration).",
+        "How I got there: OneCycle was the best schedule in Part 6, so I gave it a longer horizon. "
+        f"100 epochs with per-epoch shuffling and AdamW reached {_acc(r, 'part7_onecycle_100ep')}, "
+        "but its training loss fell to ~0.0015 while validation accuracy flattened, i.e. the network "
+        "had memorized the training set. Adding dropout 0.1 as regularization raised the test "
+        f"accuracy to {_acc(r, FINAL_RUN)}, at the cost of slower epochs "
+        f"({_time(r, FINAL_RUN)} vs {_time(r, 'part7_onecycle_100ep')}).",
+        "Progression of the main levers (test accuracy): baseline 68.49% → input scaling 78.81% → "
+        f"[1024]×4 architecture 90.82% (5 epochs) → 500 epochs at constant lr "
+        f"{_acc(r, 'part5_500_epochs')} → OneCycle schedule {_acc(r, 'part6_onecycle_2e-3')} in "
+        f"30 epochs → longer OneCycle + shuffling + AdamW + dropout {_acc(r, FINAL_RUN)}.",
+    ]
